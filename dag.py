@@ -4,8 +4,8 @@ from datetime import datetime, timedelta
 import sys
 import os
 
-# добавление текущей папки в sys.path, чтобы импортировать train_model
-# (если файл train_model.py лежит в той же директории, что и DAG)
+# добавление текущей папки в sys.path, чтобы импортировать pipeline
+# если файл лежит в той же директории, что и DAG
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from pipeline import train
@@ -32,3 +32,4 @@ dag = DAG(
 train_task = PythonOperator(task_id='train_model', python_callable=train,dag=dag,)
 
 train_task
+
