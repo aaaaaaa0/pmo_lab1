@@ -34,11 +34,7 @@ def download_titanic_data(save_path: str):
         raise
 
 def train():
-    """
-    Функция загружает данные (или использует локальный файл), выполняет предобработку,
-    создаёт новые признаки, обучает модель градиентного бустинга и сохраняет артефакты.
-    """
-    # Пути к файлам
+
     base_dir = os.path.dirname(os.path.abspath(__file__))
     data_path = os.path.join(base_dir, 'Titanic.csv')
     model_path = os.path.join(base_dir, 'models', 'gradient_boost_model.pkl')
@@ -63,7 +59,6 @@ def train():
     df['isalone'] = (df['familysize'] == 1).astype(int)
     df['minorage'] = (df['age'] < 18).astype(int)
     df['malerisk'] = ((df['sex'] == 0) & (df['pclass'] == 3) & (df['age'] >= 16) & (df['age'] <= 45) &(df['isalone'] == 1)).astype(int)
-
 
     features = ['pclass', 'sex', 'age', 'sibsp', 'parch']
     new_features = ['familysize', 'isalone', 'minorage', 'malerisk']
@@ -133,3 +128,4 @@ def train():
 
 if __name__ == "__main__":
     train()
+
